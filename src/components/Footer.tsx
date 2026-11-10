@@ -6,7 +6,7 @@ export function Footer() {
           Graduately
         </p>
         <p className="m-0 text-sm text-ink-muted">
-          Vzdělávací aplikace k přípravě na maturitu · open source
+          Vzdělávací aplikace k přípravě na maturitu · open source (GPL-3.0)
         </p>
       </div>
     </footer>

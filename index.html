@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html lang="cs">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Graduately — příprava na maturitu</title>
+    <meta
+      name="description"
+      content="Vzdělávací aplikace k přípravě na maturitu. 13 otevřených předmětů — jazyky, sítě, hardware, grafika, programování v C#, čeština, matematika, fyzika, přírodní vědy i občanská nauka — na macOS, Windows, Linux, Android i iOS."
+    />
+    <meta property="og:title" content="Graduately" />
+    <meta
+      property="og:description"
+      content="Procvičování k maturitě v jednom okně — všech 13 předmětů otevřených."
+    />
+    <meta property="og:type" content="website" />
+    <link rel="icon" href="src/app/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Sora:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --ink: #0f2a2e;
+        --ink-muted: #3d5a5f;
+        --glass: rgba(255, 255, 255, 0.42);
+        --glass-strong: rgba(255, 255, 255, 0.58);
+        --glass-border: rgba(255, 255, 255, 0.55);
+        --accent: #e07a5f;
+        --accent-deep: #c45d42;
+        --teal: #1a8a8a;
+        --sand: #f2e8d5;
+        --font-display: "Fraunces", Georgia, serif;
+        --font-body: "Sora", system-ui, -apple-system, sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+        height: 100%;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        color: var(--ink);
+        font-family: var(--font-body);
+        background: #c8e4e0;
+        overflow-x: hidden;
+      }
+
+      ::selection {
+        background: color-mix(in srgb, var(--teal) 35%, transparent);
+        color: var(--ink);
+      }
+
+      /* Ambient background */
+      .ambient {
+        position: fixed;
+        inset: 0;
+        z-index: -1;
+        overflow: hidden;
+        background:
+          radial-gradient(ellipse 80% 60% at 10% 20%, #9fd4cf 0%, transparent 55%),
+          radial-gradient(ellipse 70% 50% at 90% 10%, #f0c9a8 0%, transparent 50%),
+          radial-gradient(ellipse 60% 55% at 70% 80%, #7eb8b4 0%, transparent 55%),
+          radial-gradient(ellipse 50% 40% at 20% 85%, #e8d4b8 0%, transparent 50%),
+          linear-gradient(160deg, #b8ddd8 0%, #d4ebe7 40%, #e8dfd0 100%);
+      }
+
+      .ambient__orb {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(60px);
+        opacity: 0.7;
+        animation: drift 18s ease-in-out infinite;
+      }
+
+      .ambient__orb--1 {
+        width: min(48vw, 520px);
+        height: min(48vw, 520px);
+        top: -8%;
+        left: -6%;
+        background: #6db8b2;
+        animation-delay: 0s;
+      }
+
+      .ambient__orb--2 {
+        width: min(42vw, 460px);
+        height: min(42vw, 460px);
+        top: 12%;
+        right: -8%;
+        background: #efb48a;
+        animation-delay: -6s;
+        animation-duration: 22s;
+      }
+
+      .ambient__orb--3 {
+        width: min(55vw, 600px);
+        height: min(55vw, 600px);
+        bottom: -15%;
+        left: 25%;
+        background: #8ec5c0;
+        animation-delay: -11s;
+        animation-duration: 26s;
+      }
+
+      .ambient__noise {
+        position: absolute;
+        inset: 0;
+        opacity: 0.07;
+        pointer-events: none;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+        background-size: 180px;
+      }
+
+      @keyframes drift {
+        0%,
+        100% {
+          transform: translate(0, 0) scale(1);
+        }
+        33% {
+          transform: translate(3%, 4%) scale(1.05);
+        }
+        66% {
+          transform: translate(-2%, 2%) scale(0.96);
+        }
+      }
+
+      @keyframes rise {
+        from {
+          opacity: 0;
+          transform: translateY(28px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .rise {
+        animation: rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+      }
+
+      .rise-delay-1 {
+        animation-delay: 0.12s;
+      }
+
+      .rise-delay-2 {
+        animation-delay: 0.24s;
+      }
+
+      .rise-delay-3 {
+        animation-delay: 0.36s;
+      }
+
+      .rise-delay-4 {
+        animation-delay: 0.5s;
+      }
+
+      /* Surfaces & buttons */
+      .glass {
+        background: var(--glass);
+        border: 1px solid var(--glass-border);
+        backdrop-filter: blur(22px) saturate(1.35);
+        -webkit-backdrop-filter: blur(22px) saturate(1.35);
+        box-shadow:
+          0 1px 0 rgba(255, 255, 255, 0.55) inset,
+          0 18px 40px rgba(15, 42, 46, 0.08);
+      }
+
+      .glass-strong {
+        background: var(--glass-strong);
+        border: 1px solid var(--glass-border);
+        backdrop-filter: blur(28px) saturate(1.4);
+        -webkit-backdrop-filter: blur(28px) saturate(1.4);
+        box-shadow:
+          0 1px 0 rgba(255, 255, 255, 0.65) inset,
+          0 22px 48px rgba(15, 42, 46, 0.1);
+      }
+
+      .btn-primary {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        padding: 0.9rem 1.55rem;
+        border-radius: 14px;
+        background: var(--accent);
+        color: #fffaf6;
+        font-weight: 600;
+        font-size: 0.95rem;
+        letter-spacing: 0.01em;
+        text-decoration: none;
+        border: none;
+        cursor: pointer;
+        transition:
+          background 0.2s ease,
+          transform 0.2s ease;
+      }
+
+      .btn-primary:hover {
+        background: var(--accent-deep);
+        transform: translateY(-1px);
+      }
+
+      .btn-ghost {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        padding: 0.9rem 1.4rem;
+        border-radius: 14px;
+        background: rgba(255, 255, 255, 0.28);
+        color: var(--ink);
+        font-weight: 600;
+        font-size: 0.95rem;
+        text-decoration: none;
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        transition:
+          background 0.2s ease,
+          transform 0.2s ease;
+      }
+
+      .btn-ghost:hover {
+        background: rgba(255, 255, 255, 0.45);
+        transform: translateY(-1px);
+      }
+
+      .btn-sm {
+        padding: 0.625rem 0.875rem;
+        font-size: 0.875rem;
+      }
+
+      .section-title {
+        margin: 0;
+        font-family: var(--font-display);
+        font-weight: 560;
+        font-size: clamp(1.75rem, 3.5vw, 2.45rem);
+        letter-spacing: -0.02em;
+        line-height: 1.15;
+        color: var(--ink);
+      }
+
+      .section-lead {
+        margin: 0.75rem 0 0;
+        max-width: 36rem;
+        color: var(--ink-muted);
+        font-size: 1.05rem;
+        line-height: 1.55;
+      }
+
+      .container {
+        max-width: 72rem;
+        margin: 0 auto;
+      }
+
+      /* Header / Hero */
+      .hero-header {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .nav {
+        position: relative;
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1.5rem 1.25rem 1rem;
+      }
+
+      .brand {
+        font-family: var(--font-display);
+        font-size: 1.25rem;
+        font-weight: 600;
+        letter-spacing: -0.025em;
+        color: var(--ink);
+        text-decoration: none;
+      }
+
+      .nav-actions {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .hero-grid {
+        position: relative;
+        z-index: 10;
+        display: grid;
+        flex: 1;
+        align-items: center;
+        gap: 2.5rem;
+        padding: 2rem 1.25rem 4rem;
+      }
+
+      .hero-copy {
+        max-width: 36rem;
+      }
+
+      .hero-title {
+        margin: 0;
+        font-family: var(--font-display);
+        font-size: clamp(2.8rem, 7vw, 4.75rem);
+        font-weight: 600;
+        line-height: 0.95;
+        letter-spacing: -0.035em;
+        color: var(--ink);
+      }
+
+      .hero-subtitle {
+        margin: 1.25rem 0 0;
+        font-family: var(--font-display);
+        font-size: clamp(1.65rem, 3.2vw, 2.35rem);
+        font-weight: 500;
+        line-height: 1.35;
+        letter-spacing: -0.02em;
+        color: var(--ink);
+      }
+
+      .hero-text {
+        margin: 1rem 0 0;
+        max-width: 28rem;
+        font-size: 1rem;
+        line-height: 1.625;
+        color: var(--ink-muted);
+      }
+
+      .hero-cta {
+        margin-top: 2rem;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+      }
+
+      .hero-shot {
+        position: relative;
+        aspect-ratio: 2920 / 2188;
+        overflow: hidden;
+        border-radius: 28px;
+      }
+
+      .hero-shot img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: top;
+        display: block;
+      }
+
+      /* Sections */
+      .section-subjects {
+        padding: 5rem 1.25rem;
+      }
+
+      .subjects-grid {
+        margin: 3rem 0 0;
+        padding: 0;
+        list-style: none;
+        display: grid;
+        gap: 1rem;
+      }
+
+      .subject-card {
+        border-radius: 1rem;
+        padding: 1.5rem;
+        transition:
+          transform 0.2s ease,
+          background 0.2s ease;
+      }
+
+      .subject-card:hover {
+        transform: translateY(-2px);
+        background: rgba(255, 255, 255, 0.55);
+      }
+
+      .subject-flag {
+        display: inline-block;
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        color: var(--teal);
+        margin-bottom: 0.75rem;
+      }
+
+      .subject-name {
+        margin: 0;
+        font-family: var(--font-display);
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: var(--ink);
+      }
+
+      .subject-detail {
+        margin: 0.5rem 0 0;
+        color: var(--ink-muted);
+        line-height: 1.625;
+      }
+
+      /* Features */
+      .section-features {
+        padding: 2rem 1.25rem 5rem;
+      }
+
+      .features-list {
+        margin-top: 3rem;
+        display: grid;
+        gap: 2rem;
+      }
+
+      .feature-card {
+        border-radius: 28px;
+        overflow: hidden;
+        display: grid;
+        align-items: center;
+      }
+
+      .feature-body {
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .feature-title {
+        margin: 0;
+        font-family: var(--font-display);
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: var(--ink);
+      }
+
+      .feature-text {
+        margin: 0.75rem 0 0;
+        color: var(--ink-muted);
+        font-size: 1.125rem;
+        line-height: 1.625;
+      }
+
+      .feature-media {
+        padding: 1rem;
+      }
+
+      .feature-media img {
+        width: 100%;
+        height: auto;
+        border-radius: 1rem;
+        display: block;
+      }
+
+      /* Download */
+      .section-download {
+        padding: 5rem 1.25rem;
+      }
+
+      .download-panel {
+        border-radius: 28px;
+        padding: 2rem;
+      }
+
+      .platforms-grid {
+        margin-top: 2.5rem;
+        display: grid;
+        gap: 0.75rem;
+      }
+
+      .platform-link {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        border-radius: 1rem;
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        background: rgba(255, 255, 255, 0.35);
+        padding: 1rem 1.25rem;
+        text-decoration: none;
+        color: var(--ink);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        transition:
+          background 0.2s ease,
+          transform 0.2s ease;
+      }
+
+      .platform-link:hover {
+        background: rgba(255, 255, 255, 0.55);
+        transform: translateY(-2px);
+      }
+
+      .platform-name {
+        display: block;
+        font-weight: 600;
+        font-size: 1rem;
+      }
+
+      .platform-note {
+        display: block;
+        font-size: 0.875rem;
+        color: var(--ink-muted);
+        margin-top: 0.125rem;
+      }
+
+      .platform-arrow {
+        color: var(--accent);
+        font-weight: 600;
+        font-size: 0.875rem;
+        transition: transform 0.2s ease;
+      }
+
+      .platform-link:hover .platform-arrow {
+        transform: translateX(2px);
+      }
+
+      .download-footnote {
+        margin: 2rem 0 0;
+        font-size: 0.875rem;
+        color: var(--ink-muted);
+      }
+
+      .download-footnote a {
+        color: var(--teal);
+        font-weight: 600;
+        text-decoration: none;
+        text-underline-offset: 2px;
+      }
+
+      .download-footnote a:hover {
+        text-decoration: underline;
+      }
+
+      /* Footer */
+      .site-footer {
+        padding: 1rem 1.25rem 2.5rem;
+      }
+
+      .footer-inner {
+        border-radius: 1rem;
+        padding: 1.25rem 1.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+
+      .footer-brand {
+        margin: 0;
+        font-family: var(--font-display);
+        font-size: 1.125rem;
+        font-weight: 600;
+        color: var(--ink);
+      }
+
+      .footer-meta {
+        margin: 0;
+        font-size: 0.875rem;
+        color: var(--ink-muted);
+      }
+
+      /* Responsive breakpoints */
+      @media (min-width: 640px) {
+        .nav {
+          padding-left: 2rem;
+          padding-right: 2rem;
+        }
+        .brand {
+          font-size: 1.5rem;
+        }
+        .nav-actions {
+          gap: 0.75rem;
+        }
+        .hero-grid {
+          padding-left: 2rem;
+          padding-right: 2rem;
+        }
+        .hero-text {
+          font-size: 1.125rem;
+        }
+        .section-subjects {
+          padding: 7rem 2rem;
+        }
+        .subjects-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+        .section-features {
+          padding: 3rem 2rem 5rem;
+        }
+        .feature-body {
+          padding: 2.5rem;
+        }
+        .feature-title {
+          font-size: 1.875rem;
+        }
+        .feature-media {
+          padding: 1.5rem;
+        }
+        .section-download {
+          padding: 7rem 2rem;
+        }
+        .download-panel {
+          padding: 3rem;
+        }
+        .platforms-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+        .site-footer {
+          padding-left: 2rem;
+          padding-right: 2rem;
+        }
+        .footer-inner {
+          flex-direction: row;
+          align-items: center;
+          justify-content: space-between;
+        }
+      }
+
+      @media (min-width: 1024px) {
+        .nav {
+          padding-left: 3rem;
+          padding-right: 3rem;
+        }
+        .hero-grid {
+          min-height: calc(100svh - 5.5rem);
+          grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+          gap: 3.5rem;
+          padding: 2rem 3rem 5rem;
+        }
+        .section-subjects {
+          padding-left: 3rem;
+          padding-right: 3rem;
+        }
+        .subjects-grid {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+        .section-features {
+          padding-left: 3rem;
+          padding-right: 3rem;
+        }
+        .features-list {
+          gap: 2.5rem;
+        }
+        .feature-card {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+        .feature-card--reverse > :first-child {
+          order: 2;
+        }
+        .section-download {
+          padding-left: 3rem;
+          padding-right: 3rem;
+        }
+        .platforms-grid {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+        .site-footer {
+          padding-left: 3rem;
+          padding-right: 3rem;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .ambient__orb,
+        .rise,
+        .rise-delay-1,
+        .rise-delay-2,
+        .rise-delay-3,
+        .rise-delay-4 {
+          animation: none !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="top" class="relative">
+      <div class="ambient" aria-hidden="true">
+        <div class="ambient__orb ambient__orb--1"></div>
+        <div class="ambient__orb ambient__orb--2"></div>
+        <div class="ambient__orb ambient__orb--3"></div>
+        <div class="ambient__noise"></div>
+      </div>
+
+      <!-- Hero -->
+      <header class="hero-header">
+        <nav class="nav rise">
+          <a href="#top" class="brand">Graduately</a>
+          <div class="nav-actions">
+            <a href="#stahnout" class="btn-ghost btn-sm">Stáhnout</a>
+            <a
+              href="https://github.com/pepaskopec-blip/Graduately"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn-primary btn-sm"
+            >
+              GitHub
+            </a>
+          </div>
+        </nav>
+
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <h1 class="hero-title rise rise-delay-1">Graduately</h1>
+            <p class="hero-subtitle rise rise-delay-2">Maturita? To dáme.</p>
+            <p class="hero-text rise rise-delay-3">
+              Procvičování k maturitě v jednom okně — všech 13 předmětů
+              otevřených, česky i anglicky, se statistikami a automatickými
+              aktualizacemi.
+            </p>
+            <div class="hero-cta rise rise-delay-4">
+              <a href="#stahnout" class="btn-primary">Stáhnout aplikaci</a>
+              <a href="#predmety" class="btn-ghost">Co umí</a>
+            </div>
+          </div>
+
+          <div class="hero-shot glass rise rise-delay-2">
+            <img
+              src="public/screenshots/welcome-app.png"
+              alt="Úvodní obrazovka aplikace Graduately se 13 otevřenými předměty"
+            />
+          </div>
+        </div>
+      </header>
+
+      <!-- Subjects -->
+      <section id="predmety" class="section-subjects">
+        <div class="container">
+          <h2 class="section-title">Třináct otevřených předmětů</h2>
+          <p class="section-lead">
+            Všechny předměty v aplikaci jsou odemčené — od jazyků a IT přes
+            grafiku a programování až po matematiku, fyziku a společenské vědy.
+          </p>
+
+          <ul class="subjects-grid">
+            <li class="subject-card glass">
+              <span class="subject-flag">DE</span>
+              <h3 class="subject-name">Deutsch</h3>
+              <p class="subject-detail">
+                Učebnice (Neue Freunde, Aus aller Welt, Bei uns zu Hause) a 4
+                ročníky, 24 lekcí od A1 k B1: poslech, čtení, psaní, doplňování
+                a kvízy
+              </p>
+            </li>
+            <li class="subject-card glass">
+              <span class="subject-flag">NET</span>
+              <h3 class="subject-name">Správa počítačových sítí</h3>
+              <p class="subject-detail">
+                4 ročníky: 1. ročník má 27 lekcí (adresy, modely, přepínače a
+                bezdrát), ročníky 2–4 po 8 lekcích (VLAN, směrování, firewall,
+                návrh a maturita)
+              </p>
+            </li>
+            <li class="subject-card glass">
+              <span class="subject-flag">HW</span>
+              <h3 class="subject-name">Technické vybavení</h3>
+              <p class="subject-detail">
+                4 ročníky: 1. ročník má 29 lekcí (architektura, data, skříň,
+                deska, karty, disky a vstup), ročníky 2–4 po 8 lekcích
+                (monitory, sestavení, RAID, servery, údržba)
+              </p>
+            </li>
+            <li class="subject-card glass">
+              <span class="subject-flag">CAD</span>
+              <h3 class="subject-name">Technická grafika</h3>
+              <p class="subject-detail">
+                4 ročníky AutoCADu, v každém 8 lekcí: výkres a souřadnice,
+                úpravy a kóty, pohledy a tisk, 3D a maturitní zadání
+              </p>
+            </li>
+            <li class="subject-card glass">
+              <span class="subject-flag">GFX</span>
+              <h3 class="subject-name">Prezentační grafika</h3>
+              <p class="subject-detail">
+                4 ročníky, v každém 8 lekcí: Photoshop od pixelu po plakát,
+                Premiere Pro a ve čtvrtém ročníku Illustrator, After Effects a
+                InDesign
+              </p>
+            </li>
+            <li class="subject-card glass">
+              <span class="subject-flag">SW</span>
+              <h3 class="subject-name">Programové vybavení</h3>
+              <p class="subject-detail">
+                4 ročníky, v každém 8 lekcí: Windows a licence, Word a Excel,
+                Access a MySQL, pak WordPress, Power BI, dávkové soubory a
+                zásady
+              </p>
+            </li>
+            <li class="subject-card glass">
+              <span class="subject-flag">C#</span>
+              <h3 class="subject-name">Programování</h3>
+              <p class="subject-detail">
+                4 ročníky C# po vzoru W3Schools — u každé lekce se kód píše a
+                spouští vedle výkladu, od výpisu po třídy, LINQ a async
+              </p>
+            </li>
+            <li class="subject-card glass">
+              <span class="subject-flag">CZ</span>
+              <h3 class="subject-name">Český jazyk a literatura</h3>
+              <p class="subject-detail">
+                Literatura (4 ročníky, 32 lekcí podle osnov středních škol),
+                mluvnice (20 cvičení) a maturitní četba (82 knih: zápisky, kvíz,
+                sestavení děje)
+              </p>
+            </li>
+            <li class="subject-card glass">
+              <span class="subject-flag">MAT</span>
+              <h3 class="subject-name">Matematika</h3>
+              <p class="subject-detail">
+                Opakování základní školy a 4 ročníky, 40 lekcí; příklady se
+                píšou a kontrolují, u geometrie jde i rýsovat na mřížku
+              </p>
+            </li>
+            <li class="subject-card glass">
+              <span class="subject-flag">FYZ</span>
+              <h3 class="subject-name">Fyzika</h3>
+              <p class="subject-detail">
+                4 ročníky, 32 lekcí podle osnov středních škol (mechanika, teplo
+                a vlny, elektřina a magnetismus, optika až astrofyzika)
+              </p>
+            </li>
+            <li class="subject-card glass">
+              <span class="subject-flag">ZPV</span>
+              <h3 class="subject-name">Základy přírodních věd</h3>
+              <p class="subject-detail">
+                Chemie a biologie, v každé 8 lekcí (od atomu a buňky po
+                biochemii a ekologii) s výkladem a kvízem
+              </p>
+            </li>
+            <li class="subject-card glass">
+              <span class="subject-flag">OBN</span>
+              <h3 class="subject-name">Občanská nauka</h3>
+              <p class="subject-detail">
+                4 ročníky (17 + 16 + 16 + 16 lekcí): člověk v lidském
+                společenství, občan, právo, hospodářství, svět a filozofie
+              </p>
+            </li>
+            <li class="subject-card glass">
+              <span class="subject-flag">EN</span>
+              <h3 class="subject-name">Angličtina</h3>
+              <p class="subject-detail">
+                4 ročníky, 32 lekcí podle osnov gymnázia (A2 až maturita):
+                poslech, čtení, psaní, doplňování, kvízy a ročníkové testy
+              </p>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Features -->
+      <section id="funkce" class="section-features">
+        <div class="container">
+          <h2 class="section-title">Jak to vypadá uvnitř</h2>
+          <p class="section-lead">
+            Statistiky, hledání (lupa nebo Cmd/Ctrl+K), deset barevných témat,
+            tmavý i světlý režim a přepínač čeština / angličtina.
+          </p>
+
+          <div class="features-list">
+            <article class="feature-card glass-strong">
+              <div class="feature-body">
+                <h3 class="feature-title">Ročníky, učebnice a četba</h3>
+                <p class="feature-text">
+                  Každý předmět má vlastní cestu rozdělenou na ročníky, lekce
+                  nebo knihy. U němčiny nechybí učebnice Neue Freunde, Aus aller
+                  Welt a Bei uns zu Hause i čtyři ročníky od A1 po B1.
+                </p>
+              </div>
+              <div class="feature-media">
+                <img
+                  src="public/screenshots/subjects-app.png"
+                  alt="Přehled učebnic a ročníků němčiny v Graduately"
+                  loading="lazy"
+                />
+              </div>
+            </article>
+
+            <article class="feature-card feature-card--reverse glass-strong">
+              <div class="feature-body">
+                <h3 class="feature-title">Cvičení, poslech i živý kód</h3>
+                <p class="feature-text">
+                  Výklad, poslech, čtení, psaní, doplňování, kvízy a
+                  vokabeltraining. V programování se navíc píše a spouští C#
+                  přímo vedle výkladu a u geometrie lze rýsovat na mřížku.
+                </p>
+              </div>
+              <div class="feature-media">
+                <img
+                  src="public/screenshots/german-app.png"
+                  alt="Německá učební cesta Neue Freunde v Graduately"
+                  loading="lazy"
+                />
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Download -->
+      <section id="stahnout" class="section-download">
+        <div class="container">
+          <div class="download-panel glass-strong">
+            <h2 class="section-title">Stáhni a nainstaluj</h2>
+            <p class="section-lead">
+              Stáhni zip, rozbal ho a otevři instalátor (žádný Terminál).
+              Instalátor si stáhne aktuální commit z větve builds a aplikace se
+              pak aktualizuje sama.
+            </p>
+
+            <div class="platforms-grid">
+              <a
+                href="https://github.com/pepaskopec-blip/Graduately/raw/main/installers/graduately-installer-macos.zip"
+                class="platform-link"
+              >
+                <span>
+                  <span class="platform-name">macOS</span>
+                  <span class="platform-note">
+                    Apple Silicon · Nainstalovat Graduately
+                  </span>
+                </span>
+                <span class="platform-arrow" aria-hidden="true">↓</span>
+              </a>
+
+              <a
+                href="https://github.com/pepaskopec-blip/Graduately/raw/main/installers/graduately-installer-windows.zip"
+                class="platform-link"
+              >
+                <span>
+                  <span class="platform-name">Windows</span>
+                  <span class="platform-note">
+                    x64 · instalátor bez příkazové řádky
+                  </span>
+                </span>
+                <span class="platform-arrow" aria-hidden="true">↓</span>
+              </a>
+
+              <a
+                href="https://github.com/pepaskopec-blip/Graduately/raw/main/installers/graduately-installer-linux.zip"
+                class="platform-link"
+              >
+                <span>
+                  <span class="platform-name">Linux</span>
+                  <span class="platform-note">x86_64 · AppImage instalátor</span>
+                </span>
+                <span class="platform-arrow" aria-hidden="true">↓</span>
+              </a>
+
+              <a
+                href="https://github.com/pepaskopec-blip/Graduately/raw/main/installers/graduately-installer-android.zip"
+                class="platform-link"
+              >
+                <span>
+                  <span class="platform-name">Android</span>
+                  <span class="platform-note">8+ · průvodce stažením APK</span>
+                </span>
+                <span class="platform-arrow" aria-hidden="true">↓</span>
+              </a>
+
+              <a
+                href="https://github.com/pepaskopec-blip/Graduately/raw/main/installers/graduately-installer-ios.zip"
+                class="platform-link"
+              >
+                <span>
+                  <span class="platform-name">iOS</span>
+                  <span class="platform-note">
+                    26+ · návod pro Xcode a AltStore
+                  </span>
+                </span>
+                <span class="platform-arrow" aria-hidden="true">↓</span>
+              </a>
+            </div>
+
+            <p class="download-footnote">
+              Hotové balíčky bez instalátoru najdeš ve větvi
+              <a
+                href="https://github.com/pepaskopec-blip/Graduately/tree/builds"
+                target="_blank"
+                rel="noopener noreferrer"
+                >builds</a
+              >, zdrojáky a návod k sestavení (SwiftUI + Kotlin Compose) na
+              <a
+                href="https://github.com/pepaskopec-blip/Graduately"
+                target="_blank"
+                rel="noopener noreferrer"
+                >GitHubu</a
+              >.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="site-footer">
+        <div class="container footer-inner glass">
+          <p class="footer-brand">Graduately</p>
+          <p class="footer-meta">
+            Vzdělávací aplikace k přípravě na maturitu · open source (GPL-3.0)
+          </p>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

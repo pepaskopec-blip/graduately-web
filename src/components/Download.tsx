@@ -1,27 +1,27 @@
 const platforms = [
   {
     name: "macOS",
-    note: "Apple Silicon",
+    note: "Apple Silicon · Nainstalovat Graduately",
     href: "https://github.com/pepaskopec-blip/Graduately/raw/main/installers/graduately-installer-macos.zip",
   },
   {
     name: "Windows",
-    note: "x64",
+    note: "x64 · instalátor bez příkazové řádky",
     href: "https://github.com/pepaskopec-blip/Graduately/raw/main/installers/graduately-installer-windows.zip",
   },
   {
     name: "Linux",
-    note: "x86_64",
+    note: "x86_64 · AppImage instalátor",
     href: "https://github.com/pepaskopec-blip/Graduately/raw/main/installers/graduately-installer-linux.zip",
   },
   {
     name: "Android",
-    note: "8+",
+    note: "8+ · průvodce stažením APK",
     href: "https://github.com/pepaskopec-blip/Graduately/raw/main/installers/graduately-installer-android.zip",
   },
   {
     name: "iOS",
-    note: "26+",
+    note: "26+ · návod pro Xcode a AltStore",
     href: "https://github.com/pepaskopec-blip/Graduately/raw/main/installers/graduately-installer-ios.zip",
   },
 ];
@@ -33,8 +33,9 @@ export function Download() {
         <div className="glass-strong rounded-[28px] p-8 sm:p-12">
           <h2 className="section-title">Stáhni a nainstaluj</h2>
           <p className="section-lead">
-            Zip rozbalíš a spustíš instalátor. Buildy se aktualizují samy z
-            větve builds.
+            Stáhni zip, rozbal ho a otevři instalátor (žádný Terminál).
+            Instalátor si stáhne aktuální commit z větve builds a aplikace se pak
+            aktualizuje sama.
           </p>
 
           <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
@@ -63,7 +64,16 @@ export function Download() {
           </div>
 
           <p className="mt-8 mb-0 text-sm text-ink-muted">
-            Zdrojáky a dokumentace jsou na{" "}
+            Hotové balíčky bez instalátoru najdeš ve větvi{" "}
+            <a
+              href="https://github.com/pepaskopec-blip/Graduately/tree/builds"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-teal font-semibold underline-offset-2 hover:underline"
+            >
+              builds
+            </a>
+            , zdrojáky a návod k sestavení (SwiftUI + Kotlin Compose) na{" "}
             <a
               href="https://github.com/pepaskopec-blip/Graduately"
               target="_blank"

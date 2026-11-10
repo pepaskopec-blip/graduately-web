@@ -17,10 +17,11 @@ const fraunces = Fraunces({
 export const metadata: Metadata = {
   title: "Graduately — příprava na maturitu",
   description:
-    "Vzdělávací aplikace k přípravě na maturitu. Deutsch, sítě, hardware a čeština — na macOS, Windows, Linux, Android i iOS.",
+    "Vzdělávací aplikace k přípravě na maturitu. 13 otevřených předmětů — jazyky, sítě, hardware, grafika, programování v C#, čeština, matematika, fyzika, přírodní vědy i občanská nauka — na macOS, Windows, Linux, Android i iOS.",
   openGraph: {
     title: "Graduately",
-    description: "Procvičování k maturitě v jednom okně.",
+    description:
+      "Procvičování k maturitě v jednom okně — všech 13 předmětů otevřených.",
     type: "website",
   },
 };

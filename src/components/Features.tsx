@@ -2,16 +2,20 @@ import Image from "next/image";
 
 const features = [
   {
-    title: "Učební cesty",
-    text: "Mapa předmětů, uzly lekcí a zamčené placeholdery, které čekají na obsah.",
-    image: "/screenshots/subjects.png",
-    alt: "Obrazovka s mapou předmětů",
+    title: "Ročníky, učebnice a četba",
+    text: "Každý předmět má vlastní cestu rozdělenou na ročníky, lekce nebo knihy. U němčiny nechybí učebnice Neue Freunde, Aus aller Welt a Bei uns zu Hause i čtyři ročníky od A1 po B1.",
+    image: "/screenshots/subjects-app.png",
+    alt: "Přehled učebnic a ročníků němčiny v Graduately",
+    width: 2920,
+    height: 1090,
   },
   {
-    title: "Cvičení s nápovědou",
-    text: "Německá cesta s vokabeltrainingem, tipy a postupem, který se ukládá.",
-    image: "/screenshots/german.png",
-    alt: "Německá učební cesta v Graduately",
+    title: "Cvičení, poslech i živý kód",
+    text: "Výklad, poslech, čtení, psaní, doplňování, kvízy a vokabeltraining. V programování se navíc píše a spouští C# přímo vedle výkladu a u geometrie lze rýsovat na mřížku.",
+    image: "/screenshots/german-app.png",
+    alt: "Německá učební cesta Neue Freunde v Graduately",
+    width: 3000,
+    height: 1860,
   },
 ];
 
@@ -21,14 +25,15 @@ export function Features() {
       <div className="max-w-6xl mx-auto">
         <h2 className="section-title">Jak to vypadá uvnitř</h2>
         <p className="section-lead">
-          Statistiky, hledání, deset témat a přepínač čeština / angličtina.
+          Statistiky, hledání (lupa nebo Cmd/Ctrl+K), deset barevných témat,
+          tmavý i světlý režim a přepínač čeština / angličtina.
         </p>
 
         <div className="mt-12 grid gap-8 lg:gap-10">
           {features.map((feature, index) => (
             <article
               key={feature.title}
-              className={`glass-strong rounded-[28px] overflow-hidden grid lg:grid-cols-2 ${
+              className={`glass-strong rounded-[28px] overflow-hidden grid lg:grid-cols-2 items-center ${
                 index % 2 === 1 ? "lg:[&>*:first-child]:order-2" : ""
               }`}
             >
@@ -40,12 +45,13 @@ export function Features() {
                   {feature.text}
                 </p>
               </div>
-              <div className="relative min-h-[240px] sm:min-h-[320px]">
+              <div className="p-4 sm:p-6">
                 <Image
                   src={feature.image}
                   alt={feature.alt}
-                  fill
-                  className="object-cover object-top"
+                  width={feature.width}
+                  height={feature.height}
+                  className="w-full h-auto rounded-2xl block"
                   sizes="(max-width: 1024px) 100vw, 50vw"
                 />
               </div>

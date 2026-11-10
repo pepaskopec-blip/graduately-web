@@ -33,11 +33,12 @@ export function Hero() {
             Graduately
           </h1>
           <p className="rise rise-delay-2 mt-5 font-[family-name:var(--font-fraunces)] text-[clamp(1.65rem,3.2vw,2.35rem)] font-medium leading-snug tracking-[-0.02em] text-ink m-0">
-            Maturita? To dáte.
+            Maturita? To dáme.
           </p>
           <p className="rise rise-delay-3 mt-4 text-base sm:text-lg text-ink-muted leading-relaxed max-w-md m-0">
-            Procvičování k maturitě v jednom okně — česky i anglicky, se
-            statistikami a automatickými aktualizacemi.
+            Procvičování k maturitě v jednom okně — všech 13 předmětů
+            otevřených, česky i anglicky, se statistikami a automatickými
+            aktualizacemi.
           </p>
           <div className="rise rise-delay-4 mt-8 flex flex-wrap gap-3">
             <a href="#stahnout" className="btn-primary">
@@ -49,13 +50,13 @@ export function Hero() {
           </div>
         </div>
 
-        <div className="rise rise-delay-2 relative aspect-[3/2] overflow-hidden rounded-[28px] glass">
+        <div className="rise rise-delay-2 relative aspect-[2920/2188] overflow-hidden rounded-[28px] glass">
           <Image
-            src="/screenshots/welcome.png"
-            alt="Úvodní obrazovka aplikace Graduately"
+            src="/screenshots/welcome-app.png"
+            alt="Úvodní obrazovka aplikace Graduately se 13 otevřenými předměty"
             fill
             priority
-            className="object-cover"
+            className="object-cover object-top"
             sizes="(max-width: 1024px) 100vw, 52vw"
           />
         </div>
