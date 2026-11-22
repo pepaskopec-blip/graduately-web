@@ -2,22 +2,10 @@
 
 Propagační web pro [Graduately](https://github.com/pepaskopec-blip/Graduately) — vzdělávací aplikaci k přípravě na maturitu.
 
-## Spuštění (Next.js)
+Živá verze běží na [graduately.skopec.dev](https://graduately.skopec.dev).
 
-```bash
-npm install
-npm run dev
-```
+## Struktura
 
-Otevři [http://localhost:3000](http://localhost:3000).
-
-## Samostatná HTML verze
-
-V kořeni projektu je soubor `index.html`, který lze otevřít přímo v prohlížeči bez buildu a Node.js.
-
-## Stack
-
-- Next.js (App Router)
-- React
-- Tailwind CSS
-- Glassmorphism UI
+- `index.html` — samostatná statická stránka (HTML + CSS)
+- `screenshots/` — náhledy aplikace
+- `favicon.ico` — ikona webu
