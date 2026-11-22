@@ -6,12 +6,12 @@
     <title>Graduately — příprava na maturitu</title>
     <meta
       name="description"
-      content="Vzdělávací aplikace k přípravě na maturitu. 13 otevřených předmětů — jazyky, sítě, hardware, grafika, programování v C#, čeština, matematika, fyzika, přírodní vědy i občanská nauka — na macOS, Windows, Linux, Android i iOS."
+      content="Vzdělávací aplikace k přípravě na maturitu. 13 předmětů, 540+ cvičení, 82 knih četby, Maturita nanečisto, opakování chyb, PDF taháky i synchronizace účtu — pro macOS, Windows, Linux, Android i iOS."
     />
-    <meta property="og:title" content="Graduately" />
+    <meta property="og:title" content="Graduately — příprava na maturitu" />
     <meta
       property="og:description"
-      content="Procvičování k maturitě v jednom okně — všech 13 předmětů otevřených."
+      content="Maturita? To dáme. 13 předmětů, Maturita nanečisto, opakování chyb, export taháků do PDF a synchronizace mezi zařízeními."
     />
     <meta property="og:type" content="website" />
     <link rel="icon" href="favicon.ico" />
@@ -346,7 +346,7 @@
 
       .hero-shot {
         position: relative;
-        aspect-ratio: 2920 / 2188;
+        aspect-ratio: 2000 / 1407;
         overflow: hidden;
         border-radius: 28px;
       }
@@ -361,20 +361,19 @@
 
       /* Sections */
       .section-subjects {
-        padding: 5rem 1.25rem;
+        padding: 3.5rem 1.25rem;
       }
 
       .subjects-grid {
-        margin: 3rem 0 0;
+        margin: 2rem 0 0;
         padding: 0;
-        list-style: none;
         display: grid;
         gap: 1rem;
       }
 
       .subject-card {
         border-radius: 1rem;
-        padding: 1.5rem;
+        padding: 1.35rem 1.5rem;
         transition:
           transform 0.2s ease,
           background 0.2s ease;
@@ -383,15 +382,6 @@
       .subject-card:hover {
         transform: translateY(-2px);
         background: rgba(255, 255, 255, 0.55);
-      }
-
-      .subject-flag {
-        display: inline-block;
-        font-size: 0.75rem;
-        font-weight: 700;
-        letter-spacing: 0.12em;
-        color: var(--teal);
-        margin-bottom: 0.75rem;
       }
 
       .subject-name {
@@ -403,9 +393,39 @@
       }
 
       .subject-detail {
-        margin: 0.5rem 0 0;
+        margin: 0.375rem 0 1rem;
         color: var(--ink-muted);
-        line-height: 1.625;
+        font-size: 0.95rem;
+        line-height: 1.55;
+      }
+
+      .subject-pills {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .subject-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.375rem;
+        border-radius: 0.75rem;
+        border: 1px solid rgba(255, 255, 255, 0.55);
+        background: rgba(255, 255, 255, 0.45);
+        padding: 0.375rem 0.75rem;
+        font-size: 0.85rem;
+        font-weight: 500;
+        color: var(--ink);
+      }
+
+      .subject-pill__code {
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        color: var(--teal);
+        font-size: 0.7rem;
       }
 
       /* Features */
@@ -586,7 +606,7 @@
           font-size: 1.125rem;
         }
         .section-subjects {
-          padding: 7rem 2rem;
+          padding: 5rem 2rem;
         }
         .subjects-grid {
           grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -637,9 +657,6 @@
         .section-subjects {
           padding-left: 3rem;
           padding-right: 3rem;
-        }
-        .subjects-grid {
-          grid-template-columns: repeat(3, minmax(0, 1fr));
         }
         .section-features {
           padding-left: 3rem;
@@ -693,15 +710,8 @@
         <nav class="nav rise">
           <a href="#top" class="brand">Graduately</a>
           <div class="nav-actions">
-            <a href="#stahnout" class="btn-ghost btn-sm">Stáhnout</a>
-            <a
-              href="https://github.com/pepaskopec-blip/Graduately"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="btn-primary btn-sm"
-            >
-              GitHub
-            </a>
+            <a href="#funkce" class="btn-ghost btn-sm">Co umí</a>
+            <a href="#stahnout" class="btn-primary btn-sm">Stáhnout</a>
           </div>
         </nav>
 
@@ -710,20 +720,20 @@
             <h1 class="hero-title rise rise-delay-1">Graduately</h1>
             <p class="hero-subtitle rise rise-delay-2">Maturita? To dáme.</p>
             <p class="hero-text rise rise-delay-3">
-              Procvičování k maturitě v jednom okně — všech 13 předmětů
-              otevřených, česky i anglicky, se statistikami a automatickými
-              aktualizacemi.
+              Příprava k maturitě v jedné aplikaci — 13 předmětů, 540+ cvičení,
+              Maturita nanečisto, chytré opakování chyb, taháky do PDF i
+              synchronizace účtu mezi zařízeními.
             </p>
             <div class="hero-cta rise rise-delay-4">
               <a href="#stahnout" class="btn-primary">Stáhnout aplikaci</a>
-              <a href="#predmety" class="btn-ghost">Co umí</a>
+              <a href="#predmety" class="btn-ghost">Přehled předmětů</a>
             </div>
           </div>
 
           <div class="hero-shot glass rise rise-delay-2">
             <img
               src="screenshots/welcome-app.png"
-              alt="Úvodní obrazovka aplikace Graduately se 13 otevřenými předměty"
+              alt="Úvodní obrazovka aplikace Graduately se studijními nástroji a barevnými kartami předmětů"
             />
           </div>
         </div>
@@ -734,122 +744,103 @@
         <div class="container">
           <h2 class="section-title">Třináct otevřených předmětů</h2>
           <p class="section-lead">
-            Všechny předměty v aplikaci jsou odemčené — od jazyků a IT přes
-            grafiku a programování až po matematiku, fyziku a společenské vědy.
+            Všechny předměty jsou odemčené a rozdělené na ročníky, lekce nebo
+            maturitní četbu — česky i anglicky.
           </p>
 
-          <ul class="subjects-grid">
-            <li class="subject-card glass">
-              <span class="subject-flag">DE</span>
-              <h3 class="subject-name">Deutsch</h3>
+          <div class="subjects-grid">
+            <div class="subject-card glass">
+              <h3 class="subject-name">Jazyky a četba</h3>
               <p class="subject-detail">
-                Učebnice (Neue Freunde, Aus aller Welt, Bei uns zu Hause) a 4
-                ročníky, 24 lekcí od A1 k B1: poslech, čtení, psaní, doplňování
-                a kvízy
+                82 knih maturitní četby (zápisky, kvíz i řazení děje), mluvnice,
+                německé učebnice i poslech a psaní od A1 k maturitě.
               </p>
-            </li>
-            <li class="subject-card glass">
-              <span class="subject-flag">NET</span>
-              <h3 class="subject-name">Správa počítačových sítí</h3>
+              <ul class="subject-pills">
+                <li class="subject-pill">
+                  <span class="subject-pill__code">CZ</span>
+                  <span>Český jazyk a literatura</span>
+                </li>
+                <li class="subject-pill">
+                  <span class="subject-pill__code">DE</span>
+                  <span>Deutsch</span>
+                </li>
+                <li class="subject-pill">
+                  <span class="subject-pill__code">EN</span>
+                  <span>Angličtina</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="subject-card glass">
+              <h3 class="subject-name">IT, sítě a programování</h3>
               <p class="subject-detail">
-                4 ročníky: 1. ročník má 27 lekcí (adresy, modely, přepínače a
-                bezdrát), ročníky 2–4 po 8 lekcích (VLAN, směrování, firewall,
-                návrh a maturita)
+                Adresace, směrování a firewall, stavba PC a serverů, živý C#
+                editor přímo vedle výkladu, Windows i databáze.
               </p>
-            </li>
-            <li class="subject-card glass">
-              <span class="subject-flag">HW</span>
-              <h3 class="subject-name">Technické vybavení</h3>
+              <ul class="subject-pills">
+                <li class="subject-pill">
+                  <span class="subject-pill__code">NET</span>
+                  <span>Správa počítačových sítí</span>
+                </li>
+                <li class="subject-pill">
+                  <span class="subject-pill__code">HW</span>
+                  <span>Technické vybavení</span>
+                </li>
+                <li class="subject-pill">
+                  <span class="subject-pill__code">C#</span>
+                  <span>Programování</span>
+                </li>
+                <li class="subject-pill">
+                  <span class="subject-pill__code">SW</span>
+                  <span>Programové vybavení</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="subject-card glass">
+              <h3 class="subject-name">Grafika a média</h3>
               <p class="subject-detail">
-                4 ročníky: 1. ročník má 29 lekcí (architektura, data, skříň,
-                deska, karty, disky a vstup), ročníky 2–4 po 8 lekcích
-                (monitory, sestavení, RAID, servery, údržba)
+                Výkresy, kóty a 3D v AutoCADu, Photoshop, Premiere Pro,
+                Illustrator, After Effects a InDesign.
               </p>
-            </li>
-            <li class="subject-card glass">
-              <span class="subject-flag">CAD</span>
-              <h3 class="subject-name">Technická grafika</h3>
+              <ul class="subject-pills">
+                <li class="subject-pill">
+                  <span class="subject-pill__code">CAD</span>
+                  <span>Technická grafika</span>
+                </li>
+                <li class="subject-pill">
+                  <span class="subject-pill__code">GFX</span>
+                  <span>Prezentační grafika</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="subject-card glass">
+              <h3 class="subject-name">Matematika, příroda a společnost</h3>
               <p class="subject-detail">
-                4 ročníky AutoCADu, v každém 8 lekcí: výkres a souřadnice,
-                úpravy a kóty, pohledy a tisk, 3D a maturitní zadání
+                Příklady a rýsování na mřížku, středoškolská fyzika, chemie s
+                biologií, právo, ekonomie i filozofie.
               </p>
-            </li>
-            <li class="subject-card glass">
-              <span class="subject-flag">GFX</span>
-              <h3 class="subject-name">Prezentační grafika</h3>
-              <p class="subject-detail">
-                4 ročníky, v každém 8 lekcí: Photoshop od pixelu po plakát,
-                Premiere Pro a ve čtvrtém ročníku Illustrator, After Effects a
-                InDesign
-              </p>
-            </li>
-            <li class="subject-card glass">
-              <span class="subject-flag">SW</span>
-              <h3 class="subject-name">Programové vybavení</h3>
-              <p class="subject-detail">
-                4 ročníky, v každém 8 lekcí: Windows a licence, Word a Excel,
-                Access a MySQL, pak WordPress, Power BI, dávkové soubory a
-                zásady
-              </p>
-            </li>
-            <li class="subject-card glass">
-              <span class="subject-flag">C#</span>
-              <h3 class="subject-name">Programování</h3>
-              <p class="subject-detail">
-                4 ročníky C# po vzoru W3Schools — u každé lekce se kód píše a
-                spouští vedle výkladu, od výpisu po třídy, LINQ a async
-              </p>
-            </li>
-            <li class="subject-card glass">
-              <span class="subject-flag">CZ</span>
-              <h3 class="subject-name">Český jazyk a literatura</h3>
-              <p class="subject-detail">
-                Literatura (4 ročníky, 32 lekcí podle osnov středních škol),
-                mluvnice (20 cvičení) a maturitní četba (82 knih: zápisky, kvíz,
-                sestavení děje)
-              </p>
-            </li>
-            <li class="subject-card glass">
-              <span class="subject-flag">MAT</span>
-              <h3 class="subject-name">Matematika</h3>
-              <p class="subject-detail">
-                Opakování základní školy a 4 ročníky, 40 lekcí; příklady se
-                píšou a kontrolují, u geometrie jde i rýsovat na mřížku
-              </p>
-            </li>
-            <li class="subject-card glass">
-              <span class="subject-flag">FYZ</span>
-              <h3 class="subject-name">Fyzika</h3>
-              <p class="subject-detail">
-                4 ročníky, 32 lekcí podle osnov středních škol (mechanika, teplo
-                a vlny, elektřina a magnetismus, optika až astrofyzika)
-              </p>
-            </li>
-            <li class="subject-card glass">
-              <span class="subject-flag">ZPV</span>
-              <h3 class="subject-name">Základy přírodních věd</h3>
-              <p class="subject-detail">
-                Chemie a biologie, v každé 8 lekcí (od atomu a buňky po
-                biochemii a ekologii) s výkladem a kvízem
-              </p>
-            </li>
-            <li class="subject-card glass">
-              <span class="subject-flag">OBN</span>
-              <h3 class="subject-name">Občanská nauka</h3>
-              <p class="subject-detail">
-                4 ročníky (17 + 16 + 16 + 16 lekcí): člověk v lidském
-                společenství, občan, právo, hospodářství, svět a filozofie
-              </p>
-            </li>
-            <li class="subject-card glass">
-              <span class="subject-flag">EN</span>
-              <h3 class="subject-name">Angličtina</h3>
-              <p class="subject-detail">
-                4 ročníky, 32 lekcí podle osnov gymnázia (A2 až maturita):
-                poslech, čtení, psaní, doplňování, kvízy a ročníkové testy
-              </p>
-            </li>
-          </ul>
+              <ul class="subject-pills">
+                <li class="subject-pill">
+                  <span class="subject-pill__code">MAT</span>
+                  <span>Matematika</span>
+                </li>
+                <li class="subject-pill">
+                  <span class="subject-pill__code">FYZ</span>
+                  <span>Fyzika</span>
+                </li>
+                <li class="subject-pill">
+                  <span class="subject-pill__code">ZPV</span>
+                  <span>Základy přírodních věd</span>
+                </li>
+                <li class="subject-pill">
+                  <span class="subject-pill__code">OBN</span>
+                  <span>Občanská nauka</span>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -858,18 +849,42 @@
         <div class="container">
           <h2 class="section-title">Jak to vypadá uvnitř</h2>
           <p class="section-lead">
-            Statistiky, hledání (lupa nebo Cmd/Ctrl+K), deset barevných témat,
-            tmavý i světlý režim a přepínač čeština / angličtina.
+            Nový papírový vzhled ve světlém i tmavém režimu, účty a synchronizace
+            postupu mezi zařízeními, hledání (Cmd/Ctrl+K) a přepínač čeština /
+            angličtina.
           </p>
 
           <div class="features-list">
             <article class="feature-card glass-strong">
               <div class="feature-body">
-                <h3 class="feature-title">Ročníky, učebnice a četba</h3>
+                <h3 class="feature-title">
+                  Maturita nanečisto, opakování chyb i PDF taháky
+                </h3>
                 <p class="feature-text">
-                  Každý předmět má vlastní cestu rozdělenou na ročníky, lekce
-                  nebo knihy. U němčiny nechybí učebnice Neue Freunde, Aus aller
-                  Welt a Bei uns zu Hause i čtyři ročníky od A1 po B1.
+                  Spusť si časovaný test se známkou 1–5 z jednoho předmětu nebo
+                  vlastního mixu. Všechny chyby se automaticky ukládají do
+                  Opakování chyb, u každé otázky máš offline chytré vysvětlení z
+                  látky a z každé lekce i knihy si vyexportuješ přehledný tahák
+                  do PDF.
+                </p>
+              </div>
+              <div class="feature-media">
+                <img
+                  src="screenshots/exam-app.png"
+                  alt="Maturita nanečisto — výběr předmětů k mixování a délky zkoušky v Graduately"
+                  loading="lazy"
+                />
+              </div>
+            </article>
+
+            <article class="feature-card feature-card--reverse glass-strong">
+              <div class="feature-body">
+                <h3 class="feature-title">Ročníky, učebnice a maturitní četba</h3>
+                <p class="feature-text">
+                  Každý předmět má vlastní barvu a přehlednou cestu rozdělenou na
+                  ročníky, lekce nebo 82 knih maturitní četby. U němčiny nechybí
+                  učebnice Neue Freunde, Aus aller Welt a Bei uns zu Hause i
+                  čtyři ročníky od A1 po B1.
                 </p>
               </div>
               <div class="feature-media">
@@ -881,7 +896,7 @@
               </div>
             </article>
 
-            <article class="feature-card feature-card--reverse glass-strong">
+            <article class="feature-card glass-strong">
               <div class="feature-body">
                 <h3 class="feature-title">Cvičení, poslech i živý kód</h3>
                 <p class="feature-text">
@@ -908,14 +923,14 @@
           <div class="download-panel glass-strong">
             <h2 class="section-title">Stáhni a nainstaluj</h2>
             <p class="section-lead">
-              Stáhni zip, rozbal ho a otevři instalátor (žádný Terminál).
-              Instalátor si stáhne aktuální commit z větve builds a aplikace se
-              pak aktualizuje sama.
+              Stáhni instalátor pro své zařízení, rozbal zip a otevři ho — žádný
+              Terminál. Aplikace se pak udržuje aktuální sama a postup si můžeš
+              synchronizovat přes vlastní účet.
             </p>
 
             <div class="platforms-grid">
               <a
-                href="https://github.com/pepaskopec-blip/Graduately/raw/main/installers/graduately-installer-macos.zip"
+                href="https://github.com/pepaskopec-blip/Graduately-releases/raw/builds/graduately-installer-macos.zip"
                 class="platform-link"
               >
                 <span>
@@ -928,7 +943,7 @@
               </a>
 
               <a
-                href="https://github.com/pepaskopec-blip/Graduately/raw/main/installers/graduately-installer-windows.zip"
+                href="https://github.com/pepaskopec-blip/Graduately-releases/raw/builds/graduately-installer-windows.zip"
                 class="platform-link"
               >
                 <span>
@@ -941,7 +956,7 @@
               </a>
 
               <a
-                href="https://github.com/pepaskopec-blip/Graduately/raw/main/installers/graduately-installer-linux.zip"
+                href="https://github.com/pepaskopec-blip/Graduately-releases/raw/builds/graduately-installer-linux.zip"
                 class="platform-link"
               >
                 <span>
@@ -952,7 +967,7 @@
               </a>
 
               <a
-                href="https://github.com/pepaskopec-blip/Graduately/raw/main/installers/graduately-installer-android.zip"
+                href="https://github.com/pepaskopec-blip/Graduately-releases/raw/builds/graduately-installer-android.zip"
                 class="platform-link"
               >
                 <span>
@@ -963,13 +978,13 @@
               </a>
 
               <a
-                href="https://github.com/pepaskopec-blip/Graduately/raw/main/installers/graduately-installer-ios.zip"
+                href="https://github.com/pepaskopec-blip/Graduately-releases/raw/builds/graduately-installer-ios.zip"
                 class="platform-link"
               >
                 <span>
                   <span class="platform-name">iOS</span>
                   <span class="platform-note">
-                    26+ · návod pro Xcode a AltStore
+                    26+ · balíček pro AltStore / Sideloadly
                   </span>
                 </span>
                 <span class="platform-arrow" aria-hidden="true">↓</span>
@@ -977,18 +992,12 @@
             </div>
 
             <p class="download-footnote">
-              Hotové balíčky bez instalátoru najdeš ve větvi
+              Přímé stažení balíčků bez instalátoru najdeš na stránce
               <a
-                href="https://github.com/pepaskopec-blip/Graduately/tree/builds"
+                href="https://github.com/pepaskopec-blip/Graduately-releases/tree/builds"
                 target="_blank"
                 rel="noopener noreferrer"
-                >builds</a
-              >, zdrojáky a návod k sestavení (SwiftUI + Kotlin Compose) na
-              <a
-                href="https://github.com/pepaskopec-blip/Graduately"
-                target="_blank"
-                rel="noopener noreferrer"
-                >GitHubu</a
+                >Graduately Releases</a
               >.
             </p>
           </div>
@@ -1000,7 +1009,7 @@
         <div class="container footer-inner glass">
           <p class="footer-brand">Graduately</p>
           <p class="footer-meta">
-            Vzdělávací aplikace k přípravě na maturitu · open source (GPL-3.0)
+            Vzdělávací aplikace k přípravě na maturitu · Verze 1.0 · © 2026 Graduately
           </p>
         </div>
       </footer>
