@@ -1,0 +1,21 @@
+{
+  "name": "Graduately",
+  "short_name": "Graduately",
+  "description": "Příprava na maturitu — 13 předmětů, 625+ lekcí, 82 knih četby, GradAI tutor.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#c8e4e0",
+  "theme_color": "#e07a5f",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
