@@ -69,7 +69,8 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        gap: 16px;
+        flex-wrap: wrap;
+        gap: 12px;
         margin-bottom: 24px;
       }
 
@@ -82,11 +83,17 @@
         text-decoration: none;
       }
 
+      .nav-pills {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
       .back-link {
         display: inline-flex;
         align-items: center;
         gap: 6px;
-        padding: 9px 16px;
+        padding: 8px 14px;
         border-radius: 999px;
         background: var(--glass-strong);
         border: 1px solid var(--glass-border);
@@ -99,7 +106,13 @@
 
       .back-link:hover {
         transform: translateY(-1px);
-        background: rgba(255, 255, 255, 0.86);
+        background: rgba(255, 255, 255, 0.88);
+      }
+
+      .back-link--active {
+        background: var(--ink);
+        color: #fffaf6;
+        border-color: var(--ink);
       }
 
       .card {
@@ -184,7 +197,12 @@
     <main class="container">
       <header class="topbar">
         <a class="brand" href="./">Graduately</a>
-        <a class="back-link" href="./">← Zpět na web</a>
+        <nav class="nav-pills" aria-label="Právní dokumenty">
+          <a class="back-link back-link--active" href="privacy.html">Soukromí</a>
+          <a class="back-link" href="terms.html">Podmínky</a>
+          <a class="back-link" href="eula.html">EULA</a>
+          <a class="back-link" href="./">← Web</a>
+        </nav>
       </header>
 
       <article class="card">
@@ -241,7 +259,7 @@
       </article>
 
       <footer class="footer">
-        © 2026 Graduately · <a href="./">graduately.skopec.dev</a>
+        © 2026 Graduately · <a href="./">graduately.skopec.dev</a> · <a href="privacy.html">Soukromí</a> · <a href="terms.html">Podmínky</a> · <a href="eula.html">EULA</a>
       </footer>
     </main>
   </body>

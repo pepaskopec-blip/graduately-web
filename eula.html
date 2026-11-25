@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="cs">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Licenční ujednání (EULA) — Graduately</title>
+    <meta
+      name="description"
+      content="Licenční ujednání koncového uživatele (End User License Agreement — EULA) pro aplikaci Graduately."
+    />
+    <link rel="icon" href="favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Sora:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --ink: #0f2a2e;
+        --ink-muted: #3d5a5f;
+        --glass: rgba(255, 255, 255, 0.52);
+        --glass-strong: rgba(255, 255, 255, 0.72);
+        --glass-border: rgba(255, 255, 255, 0.62);
+        --accent: #e07a5f;
+        --accent-deep: #c45d42;
+        --teal: #1a8a8a;
+        --font-display: "Fraunces", Georgia, serif;
+        --font-body: "Sora", system-ui, -apple-system, sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        color: var(--ink);
+        font-family: var(--font-body);
+        background: #c8e4e0;
+        line-height: 1.65;
+      }
+
+      .ambient {
+        position: fixed;
+        inset: 0;
+        z-index: -1;
+        overflow: hidden;
+        background:
+          radial-gradient(ellipse 80% 60% at 10% 20%, #9fd4cf 0%, transparent 55%),
+          radial-gradient(ellipse 70% 50% at 90% 10%, #f0c9a8 0%, transparent 50%),
+          radial-gradient(ellipse 60% 55% at 70% 80%, #7eb8b4 0%, transparent 55%),
+          linear-gradient(160deg, #b8ddd8 0%, #d4ebe7 40%, #e8dfd0 100%);
+      }
+
+      .container {
+        max-width: 820px;
+        margin: 0 auto;
+        padding: 36px 20px 64px;
+      }
+
+      .topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-bottom: 24px;
+      }
+
+      .brand {
+        font-family: var(--font-display);
+        font-size: 26px;
+        font-weight: 700;
+        font-style: italic;
+        color: var(--ink);
+        text-decoration: none;
+      }
+
+      .nav-pills {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 8px 14px;
+        border-radius: 999px;
+        background: var(--glass-strong);
+        border: 1px solid var(--glass-border);
+        color: var(--ink);
+        text-decoration: none;
+        font-size: 13px;
+        font-weight: 600;
+        transition: transform 0.16s ease, background 0.16s ease;
+      }
+
+      .back-link:hover {
+        transform: translateY(-1px);
+        background: rgba(255, 255, 255, 0.88);
+      }
+
+      .back-link--active {
+        background: var(--ink);
+        color: #fffaf6;
+        border-color: var(--ink);
+      }
+
+      .card {
+        background: var(--glass-strong);
+        border: 1px solid var(--glass-border);
+        border-radius: 28px;
+        padding: clamp(24px, 4vw, 44px);
+        backdrop-filter: blur(22px) saturate(1.3);
+        -webkit-backdrop-filter: blur(22px) saturate(1.3);
+        box-shadow:
+          0 1px 0 rgba(255, 255, 255, 0.6) inset,
+          0 20px 44px rgba(15, 42, 46, 0.08);
+      }
+
+      .kicker {
+        display: inline-block;
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--accent-deep);
+        margin-bottom: 8px;
+      }
+
+      h1 {
+        font-family: var(--font-display);
+        font-size: clamp(28px, 4.5vw, 40px);
+        line-height: 1.15;
+        margin: 0 0 8px;
+        color: var(--ink);
+      }
+
+      .updated {
+        font-size: 13px;
+        color: var(--ink-muted);
+        margin: 0 0 28px;
+      }
+
+      h2 {
+        font-family: var(--font-display);
+        font-size: 21px;
+        margin: 28px 0 10px;
+        color: var(--ink);
+      }
+
+      p {
+        margin: 0 0 12px;
+        font-size: 15px;
+        color: var(--ink);
+      }
+
+      ul {
+        margin: 0 0 14px;
+        padding-left: 20px;
+      }
+
+      li {
+        margin-bottom: 6px;
+        font-size: 15px;
+      }
+
+      a {
+        color: var(--accent-deep);
+      }
+
+      hr {
+        border: 0;
+        border-top: 1px solid rgba(15, 42, 46, 0.12);
+        margin: 32px 0;
+      }
+
+      .footer {
+        text-align: center;
+        margin-top: 28px;
+        font-size: 13px;
+        color: var(--ink-muted);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="ambient" aria-hidden="true"></div>
+    <main class="container">
+      <header class="topbar">
+        <a class="brand" href="./">Graduately</a>
+        <nav class="nav-pills" aria-label="Právní dokumenty">
+          <a class="back-link" href="privacy.html">Soukromí</a>
+          <a class="back-link" href="terms.html">Podmínky</a>
+          <a class="back-link back-link--active" href="eula.html">EULA</a>
+          <a class="back-link" href="./">← Web</a>
+        </nav>
+      </header>
+
+      <article class="card">
+        <span class="kicker">Licenční ujednání · End User License Agreement (EULA)</span>
+        <h1>Licenční ujednání koncového uživatele (EULA)</h1>
+        <p class="updated">Poslední aktualizace: 25. listopadu 2026 · <a href="#english">English version below</a></p>
+
+        <p>
+          Toto licenční ujednání koncového uživatele („<strong>EULA</strong>“) je právní dohodou mezi vámi a poskytovatelem aplikace <strong>Graduately</strong> (kontakt: <a href="mailto:pepa.skopec@gmail.com">pepa.skopec@gmail.com</a>) ohledně stažení, instalace a používání softwaru Graduately na platformách iOS, macOS, Android, Windows a Linux.
+        </p>
+
+        <h2>1. Udělení licence</h2>
+        <p>
+          Aplikace Graduately se neprodává, ale licencuje. Udělujeme vám omezenou, nevýhradní, nepřenosnou a odvolatelnou licenci k instalaci a používání aplikace Graduately výhradně pro vaši osobní, nekomerční přípravu ke studiu a maturitě na zařízeních, která vlastníte nebo ovládáte.
+        </p>
+
+        <h2>2. Duševní vlastnictví a omezení</h2>
+        <ul>
+          <li>Veškerá práva k aplikaci Graduately, jejímu zdrojovému kódu, designu, 625+ lekcím, cvičením a 82 studijním zápiskům k maturitní četbě náleží provozovateli Graduately.</li>
+          <li>Nesmíte aplikaci ani její obsah kopírovat za účelem další distribuce, prodávat, pronajímat, sublicencovat, dekompilovat ani provádět zpětné inženýrství (nad rámec zákonných výjimek stanovených právem EU a ČR).</li>
+          <li>Exportované PDF taháky jsou určeny pouze pro vaši vlastní osobní studijní potřebu.</li>
+        </ul>
+
+        <h2>3. Komponenty třetích stran (Open Source)</h2>
+        <p>Aplikace využívá otevřené knihovny a písma podle jejich příslušných licencí:</p>
+        <ul>
+          <li><strong>Phosphor Icons</strong> — licence MIT</li>
+          <li><strong>Playfair Display &amp; Sora</strong> — SIL Open Font License (OFL)</li>
+          <li><strong>OpenPDF</strong> — LGPL / MPL (generování PDF taháků na Androidu a desktopu)</li>
+        </ul>
+
+        <h2>4. Ustanovení pro zařízení Apple (iOS / macOS)</h2>
+        <p>
+          Používáte-li aplikaci Graduately na zařízení Apple (iPhone, iPad, Mac), berete na vědomí, že tato smlouva je uzavřena výhradně mezi vámi a poskytovatelem Graduately, nikoli se společností Apple Inc. Společnost Apple nenese žádnou odpovědnost za aplikaci, její obsah, údržbu, podporu ani za nároky třetích stran. Společnost Apple a její dceřiné společnosti jsou oprávněnými třetími stranami této EULA a mají právo ji vůči vám vymáhat.
+        </p>
+
+        <h2>5. Záruka a odpovědnost</h2>
+        <p>
+          Aplikace je poskytována „tak, jak stojí a leží“ („as is“). V maximálním rozsahu povoleném právními předpisy neneseme odpovědnost za nepřímé nebo následné škody vzniklé používáním aplikace. Tím nejsou dotčena kogentní práva spotřebitelů podle právního řádu České republiky a Evropské unie.
+        </p>
+
+        <hr id="english" />
+
+        <span class="kicker">English Version</span>
+        <h2>End User License Agreement (EULA)</h2>
+        <p>
+          This End User License Agreement (“<strong>EULA</strong>”) is a legal agreement between you and <strong>Graduately</strong> (<a href="mailto:pepa.skopec@gmail.com">pepa.skopec@gmail.com</a>) governing your installation and use of the Graduately software on iOS, macOS, Android, Windows, and Linux.
+        </p>
+        <ul>
+          <li><strong>License Grant:</strong> Graduately is licensed, not sold. You are granted a limited, non-exclusive, non-transferable, revocable license to install and use Graduately strictly for personal, non-commercial educational purposes on devices you own or control.</li>
+          <li><strong>Ownership &amp; Restrictions:</strong> All copyrights and intellectual property rights in the app, code, UI, 625+ lessons, quizzes, and 82 reading notes remain with Graduately. You may not redistribute, resell, sublicense, scrape, or reverse engineer the software except as permitted by mandatory applicable law. Exported PDF study sheets are for personal study use only.</li>
+          <li><strong>Open-Source Notices:</strong> Graduately incorporates Phosphor Icons (MIT), Playfair Display &amp; Sora fonts (SIL OFL), and OpenPDF (LGPL/MPL).</li>
+          <li><strong>Apple Platform Terms:</strong> If you use Graduately on an Apple device (iOS or macOS), you acknowledge that this EULA is solely between you and Graduately, not Apple Inc. Apple has no obligation to provide maintenance, support, or warranty services for the app, and Apple and its subsidiaries are third-party beneficiaries of this EULA with the right to enforce it against you.</li>
+          <li><strong>Disclaimer &amp; Liability:</strong> The software is provided “as is” without warranties beyond those required by mandatory Czech and EU consumer law.</li>
+        </ul>
+      </article>
+
+      <footer class="footer">
+        © 2026 Graduately · <a href="./">graduately.skopec.dev</a> · <a href="privacy.html">Soukromí</a> · <a href="terms.html">Podmínky</a> · <a href="eula.html">EULA</a>
+      </footer>
+    </main>
+  </body>
+</html>
