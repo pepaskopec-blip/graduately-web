@@ -6,12 +6,12 @@
     <title>Graduately — příprava na maturitu</title>
     <meta
       name="description"
-      content="Vzdělávací aplikace k přípravě na maturitu. 13 předmětů, 540+ cvičení, 82 knih četby, Maturita nanečisto, opakování chyb, PDF taháky i synchronizace účtu — pro macOS, Windows, Linux, Android i iOS."
+      content="Vzdělávací aplikace k přípravě na maturitu. 13 předmětů, 625+ lekcí, 82 maturitních knih, GradAI tutor, Maturita nanečisto, denní streak, žebříček, PDF taháky i přihlášení přes Apple a Google — pro macOS, Windows, Linux, Android i iOS."
     />
     <meta property="og:title" content="Graduately — příprava na maturitu" />
     <meta
       property="og:description"
-      content="Maturita? To dáme. 13 předmětů, Maturita nanečisto, opakování chyb, export taháků do PDF a synchronizace mezi zařízeními."
+      content="Maturita? To dáme. 13 předmětů, 625+ lekcí, 82 knih četby, GradAI tutor, Maturita nanečisto, streak, žebříček a synchronizace mezi zařízeními."
     />
     <meta property="og:type" content="website" />
     <link rel="icon" href="favicon.ico" />
@@ -253,7 +253,7 @@
 
       .section-lead {
         margin: 0.75rem 0 0;
-        max-width: 36rem;
+        max-width: 40rem;
         color: var(--ink-muted);
         font-size: 1.05rem;
         line-height: 1.55;
@@ -277,6 +277,7 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
+        gap: 0.75rem;
         padding: 1.5rem 1.25rem 1rem;
       }
 
@@ -295,6 +296,10 @@
         gap: 0.5rem;
       }
 
+      .nav-hide-sm {
+        display: none;
+      }
+
       .hero-grid {
         position: relative;
         z-index: 10;
@@ -302,11 +307,35 @@
         flex: 1;
         align-items: center;
         gap: 2.5rem;
-        padding: 2rem 1.25rem 4rem;
+        padding: 1.75rem 1.25rem 3.5rem;
       }
 
       .hero-copy {
         max-width: 36rem;
+      }
+
+      .hero-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.4rem 0.85rem;
+        margin-bottom: 1.15rem;
+        border-radius: 999px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: var(--ink);
+        background: rgba(255, 255, 255, 0.5);
+        border: 1px solid rgba(255, 255, 255, 0.65);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+      }
+
+      .hero-badge__dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--accent);
+        flex-shrink: 0;
       }
 
       .hero-title {
@@ -320,7 +349,7 @@
       }
 
       .hero-subtitle {
-        margin: 1.25rem 0 0;
+        margin: 1.15rem 0 0;
         font-family: var(--font-display);
         font-size: clamp(1.65rem, 3.2vw, 2.35rem);
         font-weight: 500;
@@ -331,17 +360,47 @@
 
       .hero-text {
         margin: 1rem 0 0;
-        max-width: 28rem;
+        max-width: 31rem;
         font-size: 1rem;
         line-height: 1.625;
         color: var(--ink-muted);
       }
 
       .hero-cta {
-        margin-top: 2rem;
+        margin-top: 1.75rem;
         display: flex;
         flex-wrap: wrap;
         gap: 0.75rem;
+      }
+
+      .hero-stats {
+        margin-top: 2rem;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.65rem;
+      }
+
+      .stat-pill {
+        border-radius: 1rem;
+        padding: 0.75rem 0.95rem;
+        background: rgba(255, 255, 255, 0.36);
+        border: 1px solid rgba(255, 255, 255, 0.55);
+      }
+
+      .stat-pill__num {
+        display: block;
+        font-family: var(--font-display);
+        font-size: 1.35rem;
+        font-weight: 600;
+        line-height: 1.1;
+        color: var(--ink);
+      }
+
+      .stat-pill__label {
+        display: block;
+        margin-top: 0.2rem;
+        font-size: 0.78rem;
+        color: var(--ink-muted);
       }
 
       .hero-shot {
@@ -359,9 +418,58 @@
         display: block;
       }
 
-      /* Sections */
+      /* Highlights (New in 1.3) */
+      .section-highlights {
+        padding: 2rem 1.25rem 3.5rem;
+      }
+
+      .highlights-grid {
+        margin-top: 2rem;
+        display: grid;
+        gap: 1rem;
+      }
+
+      .highlight-card {
+        border-radius: 1.25rem;
+        padding: 1.4rem 1.5rem;
+        transition:
+          transform 0.2s ease,
+          background 0.2s ease;
+      }
+
+      .highlight-card:hover {
+        transform: translateY(-2px);
+        background: rgba(255, 255, 255, 0.58);
+      }
+
+      .highlight-kicker {
+        display: inline-block;
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--teal);
+        margin-bottom: 0.45rem;
+      }
+
+      .highlight-title {
+        margin: 0;
+        font-family: var(--font-display);
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: var(--ink);
+      }
+
+      .highlight-text {
+        margin: 0.45rem 0 0;
+        font-size: 0.92rem;
+        line-height: 1.58;
+        color: var(--ink-muted);
+      }
+
+      /* Subjects */
       .section-subjects {
-        padding: 3.5rem 1.25rem;
+        padding: 3rem 1.25rem;
       }
 
       .subjects-grid {
@@ -430,11 +538,11 @@
 
       /* Features */
       .section-features {
-        padding: 2rem 1.25rem 5rem;
+        padding: 2.5rem 1.25rem 4rem;
       }
 
       .features-list {
-        margin-top: 3rem;
+        margin-top: 2.5rem;
         display: grid;
         gap: 2rem;
       }
@@ -464,7 +572,7 @@
       .feature-text {
         margin: 0.75rem 0 0;
         color: var(--ink-muted);
-        font-size: 1.125rem;
+        font-size: 1.05rem;
         line-height: 1.625;
       }
 
@@ -479,9 +587,101 @@
         display: block;
       }
 
+      /* Pricing */
+      .section-pricing {
+        padding: 3rem 1.25rem;
+      }
+
+      .pricing-grid {
+        margin-top: 2rem;
+        display: grid;
+        gap: 1rem;
+      }
+
+      .plan-card {
+        border-radius: 24px;
+        padding: 1.6rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+
+      .plan-card--featured {
+        border-color: color-mix(in srgb, var(--accent) 55%, white);
+        background: rgba(255, 250, 246, 0.72);
+      }
+
+      .plan-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.5rem;
+      }
+
+      .plan-name {
+        margin: 0;
+        font-family: var(--font-display);
+        font-size: 1.35rem;
+        font-weight: 600;
+        color: var(--ink);
+      }
+
+      .plan-badge {
+        display: inline-block;
+        padding: 0.25rem 0.65rem;
+        border-radius: 999px;
+        font-size: 0.72rem;
+        font-weight: 700;
+        background: var(--accent);
+        color: #fffaf6;
+      }
+
+      .plan-price {
+        margin: 0;
+        font-family: var(--font-display);
+        font-size: 1.9rem;
+        font-weight: 600;
+        color: var(--ink);
+        line-height: 1.1;
+      }
+
+      .plan-note {
+        margin: 0;
+        font-size: 0.875rem;
+        color: var(--ink-muted);
+      }
+
+      .plan-list {
+        margin: 0.5rem 0 0;
+        padding: 0;
+        list-style: none;
+        display: grid;
+        gap: 0.45rem;
+        font-size: 0.9rem;
+        color: var(--ink);
+      }
+
+      .plan-list li {
+        display: flex;
+        align-items: baseline;
+        gap: 0.5rem;
+      }
+
+      .plan-check {
+        color: var(--teal);
+        font-weight: 700;
+        flex-shrink: 0;
+      }
+
+      .pricing-footnote {
+        margin: 1.5rem 0 0;
+        font-size: 0.875rem;
+        color: var(--ink-muted);
+      }
+
       /* Download */
       .section-download {
-        padding: 5rem 1.25rem;
+        padding: 4rem 1.25rem 5rem;
       }
 
       .download-panel {
@@ -490,7 +690,7 @@
       }
 
       .platforms-grid {
-        margin-top: 2.5rem;
+        margin-top: 2.25rem;
         display: grid;
         gap: 0.75rem;
       }
@@ -586,6 +786,12 @@
         color: var(--ink-muted);
       }
 
+      .footer-meta a {
+        color: inherit;
+        text-decoration: underline;
+        text-underline-offset: 2px;
+      }
+
       /* Responsive breakpoints */
       @media (min-width: 640px) {
         .nav {
@@ -598,21 +804,33 @@
         .nav-actions {
           gap: 0.75rem;
         }
+        .nav-hide-sm {
+          display: inline-flex;
+        }
         .hero-grid {
           padding-left: 2rem;
           padding-right: 2rem;
         }
         .hero-text {
-          font-size: 1.125rem;
+          font-size: 1.1rem;
+        }
+        .hero-stats {
+          grid-template-columns: repeat(4, minmax(0, 1fr));
+        }
+        .section-highlights {
+          padding: 2rem 2rem 4rem;
+        }
+        .highlights-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
         }
         .section-subjects {
-          padding: 5rem 2rem;
+          padding: 4.5rem 2rem;
         }
         .subjects-grid {
           grid-template-columns: repeat(2, minmax(0, 1fr));
         }
         .section-features {
-          padding: 3rem 2rem 5rem;
+          padding: 3rem 2rem 4.5rem;
         }
         .feature-body {
           padding: 2.5rem;
@@ -623,8 +841,14 @@
         .feature-media {
           padding: 1.5rem;
         }
+        .section-pricing {
+          padding: 4rem 2rem;
+        }
+        .pricing-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
         .section-download {
-          padding: 7rem 2rem;
+          padding: 5.5rem 2rem;
         }
         .download-panel {
           padding: 3rem;
@@ -650,9 +874,16 @@
         }
         .hero-grid {
           min-height: calc(100svh - 5.5rem);
-          grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+          grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
           gap: 3.5rem;
-          padding: 2rem 3rem 5rem;
+          padding: 2rem 3rem 4.5rem;
+        }
+        .section-highlights {
+          padding-left: 3rem;
+          padding-right: 3rem;
+        }
+        .highlights-grid {
+          grid-template-columns: repeat(4, minmax(0, 1fr));
         }
         .section-subjects {
           padding-left: 3rem;
@@ -670,6 +901,13 @@
         }
         .feature-card--reverse > :first-child {
           order: 2;
+        }
+        .section-pricing {
+          padding-left: 3rem;
+          padding-right: 3rem;
+        }
+        .pricing-grid {
+          grid-template-columns: repeat(4, minmax(0, 1fr));
         }
         .section-download {
           padding-left: 3rem;
@@ -710,23 +948,48 @@
         <nav class="nav rise">
           <a href="#top" class="brand">Graduately</a>
           <div class="nav-actions">
+            <a href="#novinky" class="btn-ghost btn-sm nav-hide-sm">Novinky 1.3</a>
             <a href="#funkce" class="btn-ghost btn-sm">Co umí</a>
+            <a href="#cenik" class="btn-ghost btn-sm nav-hide-sm">Ceník</a>
             <a href="#stahnout" class="btn-primary btn-sm">Stáhnout</a>
           </div>
         </nav>
 
         <div class="hero-grid">
           <div class="hero-copy">
+            <div class="hero-badge rise">
+              <span class="hero-badge__dot" aria-hidden="true"></span>
+              <span>Verze 1.3 · GradAI tutor, žebříček a účty přes Apple i Google</span>
+            </div>
             <h1 class="hero-title rise rise-delay-1">Graduately</h1>
             <p class="hero-subtitle rise rise-delay-2">Maturita? To dáme.</p>
             <p class="hero-text rise rise-delay-3">
-              Příprava k maturitě v jedné aplikaci — 13 předmětů, 540+ cvičení,
-              Maturita nanečisto, chytré opakování chyb, taháky do PDF i
-              synchronizace účtu mezi zařízeními.
+              Kompletní příprava k maturitě v jedné aplikaci — 13 předmětů,
+              625+ lekcí, 82 knih četby, GradAI tutor, Maturita nanečisto,
+              denní streak se žebříčkem i cloudová synchronizace mezi všemi
+              tvými zařízeními.
             </p>
             <div class="hero-cta rise rise-delay-4">
-              <a href="#stahnout" class="btn-primary">Stáhnout aplikaci</a>
+              <a href="#stahnout" class="btn-primary">Stáhnout zdarma</a>
               <a href="#predmety" class="btn-ghost">Přehled předmětů</a>
+            </div>
+            <div class="hero-stats rise rise-delay-4">
+              <div class="stat-pill">
+                <span class="stat-pill__num">13</span>
+                <span class="stat-pill__label">předmětů</span>
+              </div>
+              <div class="stat-pill">
+                <span class="stat-pill__num">625+</span>
+                <span class="stat-pill__label">lekcí &amp; kvízů</span>
+              </div>
+              <div class="stat-pill">
+                <span class="stat-pill__num">82</span>
+                <span class="stat-pill__label">maturitních knih</span>
+              </div>
+              <div class="stat-pill">
+                <span class="stat-pill__num">5</span>
+                <span class="stat-pill__label">platforem</span>
+              </div>
             </div>
           </div>
 
@@ -739,13 +1002,65 @@
         </div>
       </header>
 
+      <!-- Highlights -->
+      <section id="novinky" class="section-highlights">
+        <div class="container">
+          <h2 class="section-title">Nově ve verzi 1.3</h2>
+          <p class="section-lead">
+            Graduately teď spojuje osvědčenou látku se zaměřením na pravidelnost,
+            chytrého AI pomocníka a bezheslové účty na každém zařízení.
+          </p>
+
+          <div class="highlights-grid">
+            <article class="highlight-card glass-strong">
+              <span class="highlight-kicker">AI doučovatel</span>
+              <h3 class="highlight-title">GradAI tutor</h3>
+              <p class="highlight-text">
+                Zeptej se na cokoli z maturitní látky, nech si vysvětlit složitý
+                příklad, rozebrat knihu z četby nebo vygenerovat cvičné otázky
+                přímo v aplikaci.
+              </p>
+            </article>
+
+            <article class="highlight-card glass-strong">
+              <span class="highlight-kicker">Každodenní návyk</span>
+              <h3 class="highlight-title">Denní série &amp; Freeze</h3>
+              <p class="highlight-text">
+                Stačí jedno cvičení denně a plamínek zůstane naživu. Týdenní
+                přehled tě drží v tempu a Streak Freeze ochrání sérii, když den
+                nestihneš.
+              </p>
+            </article>
+
+            <article class="highlight-card glass-strong">
+              <span class="highlight-kicker">Motivace</span>
+              <h3 class="highlight-title">Žebříček studentů</h3>
+              <p class="highlight-text">
+                Sbírej XP za dokončené lekce a kvízy a porovnej svůj postup s
+                ostatními podle XP, délky série i počtu splněných cvičení.
+              </p>
+            </article>
+
+            <article class="highlight-card glass-strong">
+              <span class="highlight-kicker">Na všech zařízeních</span>
+              <h3 class="highlight-title">Apple &amp; Google účty</h3>
+              <p class="highlight-text">
+                Přihlas se jedním kliknutím přes Apple nebo Google bez hesel na
+                macOS, iOS, Androidu, Windows i Linuxu — pro obnovu Premia i
+                cloudovou synchronizaci postupu.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
       <!-- Subjects -->
       <section id="predmety" class="section-subjects">
         <div class="container">
-          <h2 class="section-title">Třináct otevřených předmětů</h2>
+          <h2 class="section-title">Třináct kompletních předmětů</h2>
           <p class="section-lead">
-            Všechny předměty jsou odemčené a rozdělené na ročníky, lekce nebo
-            maturitní četbu — česky i anglicky.
+            Všechny předměty jsou rozdělené na čtyři ročníky, lekce nebo
+            maturitní četbu — s rozhraním v češtině i angličtině.
           </p>
 
           <div class="subjects-grid">
@@ -775,7 +1090,7 @@
               <h3 class="subject-name">IT, sítě a programování</h3>
               <p class="subject-detail">
                 Adresace, směrování a firewall, stavba PC a serverů, živý C#
-                editor přímo vedle výkladu, Windows i databáze.
+                editor přímo vedle výkladu, Windows, Word, Excel i databáze.
               </p>
               <ul class="subject-pills">
                 <li class="subject-pill">
@@ -849,9 +1164,9 @@
         <div class="container">
           <h2 class="section-title">Jak to vypadá uvnitř</h2>
           <p class="section-lead">
-            Nový papírový vzhled ve světlém i tmavém režimu, účty a synchronizace
-            postupu mezi zařízeními, hledání (Cmd/Ctrl+K) a přepínač čeština /
-            angličtina.
+            Čistý papírový design ve světlém i tmavém režimu, nativní macOS
+            Liquid Glass rozhraní, okamžité hledání (Cmd/Ctrl+K) a přepínač
+            čeština / angličtina.
           </p>
 
           <div class="features-list">
@@ -882,9 +1197,9 @@
                 <h3 class="feature-title">Ročníky, učebnice a maturitní četba</h3>
                 <p class="feature-text">
                   Každý předmět má vlastní barvu a přehlednou cestu rozdělenou na
-                  ročníky, lekce nebo 82 knih maturitní četby. U němčiny nechybí
-                  učebnice Neue Freunde, Aus aller Welt a Bei uns zu Hause i
-                  čtyři ročníky od A1 po B1.
+                  čtyři ročníky, lekce nebo 82 knih maturitní četby. U němčiny
+                  nechybí učebnice Neue Freunde, Aus aller Welt a Bei uns zu
+                  Hause i čtyři ročníky od A1 po B1.
                 </p>
               </div>
               <div class="feature-media">
@@ -917,15 +1232,90 @@
         </div>
       </section>
 
+      <!-- Pricing -->
+      <section id="cenik" class="section-pricing">
+        <div class="container">
+          <h2 class="section-title">Začni zdarma, odemkni vše s Premiem</h2>
+          <p class="section-lead">
+            Vyzkoušej si aplikaci ve Free verzi a jakmile budeš chtít kompletní
+            přípravu bez limitů, vyber si tarif, který ti sedí nejlépe.
+          </p>
+
+          <div class="pricing-grid">
+            <article class="plan-card glass">
+              <div class="plan-head">
+                <h3 class="plan-name">Free</h3>
+              </div>
+              <p class="plan-price">0 Kč</p>
+              <p class="plan-note">Na vyzkoušení všech předmětů</p>
+              <ul class="plan-list">
+                <li><span class="plan-check">✓</span><span>První 3 lekce z 1. ročníku u všech 13 předmětů</span></li>
+                <li><span class="plan-check">✓</span><span>5 ukázkových knih maturitní četby</span></li>
+                <li><span class="plan-check">✓</span><span>Denní streak a žebříček studentů</span></li>
+                <li><span class="plan-check">✓</span><span>Přihlášení přes Apple i Google</span></li>
+              </ul>
+            </article>
+
+            <article class="plan-card glass">
+              <div class="plan-head">
+                <h3 class="plan-name">Měsíční</h3>
+              </div>
+              <p class="plan-price">59 Kč / měs.</p>
+              <p class="plan-note">Flexibilní na písemky a zkouškové</p>
+              <ul class="plan-list">
+                <li><span class="plan-check">✓</span><span>Všech 625+ lekcí a 4 ročníky v 13 předmětech</span></li>
+                <li><span class="plan-check">✓</span><span>Všech 82 maturitních knih + PDF taháky</span></li>
+                <li><span class="plan-check">✓</span><span>GradAI tutor (25 zpráv denně)</span></li>
+                <li><span class="plan-check">✓</span><span>Maturita nanečisto, opakování chyb i sync</span></li>
+              </ul>
+            </article>
+
+            <article class="plan-card plan-card--featured glass-strong">
+              <div class="plan-head">
+                <h3 class="plan-name">Roční</h3>
+                <span class="plan-badge">Ušetříš 51 %</span>
+              </div>
+              <p class="plan-price">349 Kč / rok</p>
+              <p class="plan-note">~29 Kč / měsíc · 7 dní zdarma</p>
+              <ul class="plan-list">
+                <li><span class="plan-check">✓</span><span>Vše z Graduately Premium bez limitů</span></li>
+                <li><span class="plan-check">✓</span><span>Neomezené procvičování a C# lab</span></li>
+                <li><span class="plan-check">✓</span><span>GradAI tutor, Maturita nanečisto i PDF</span></li>
+                <li><span class="plan-check">✓</span><span>Cloudová synchronizace na všech zařízeních</span></li>
+              </ul>
+            </article>
+
+            <article class="plan-card glass">
+              <div class="plan-head">
+                <h3 class="plan-name">Maturitní pass</h3>
+              </div>
+              <p class="plan-price">590 Kč</p>
+              <p class="plan-note">Jednorázově · navždy bez předplatného</p>
+              <ul class="plan-list">
+                <li><span class="plan-check">✓</span><span>Platíš jednou a máš vše napořád</span></li>
+                <li><span class="plan-check">✓</span><span>Všech 13 předmětů, 625+ lekcí i 82 knih</span></li>
+                <li><span class="plan-check">✓</span><span>GradAI tutor, Maturita nanečisto i PDF</span></li>
+                <li><span class="plan-check">✓</span><span>Automatická obnova přes Apple / Google účet</span></li>
+              </ul>
+            </article>
+          </div>
+
+          <p class="pricing-footnote">
+            Jedno Premium platí po přihlášení přes Apple nebo Google na všech
+            tvých zařízeních (macOS, iOS, Android, Windows i Linux).
+          </p>
+        </div>
+      </section>
+
       <!-- Download -->
       <section id="stahnout" class="section-download">
         <div class="container">
           <div class="download-panel glass-strong">
-            <h2 class="section-title">Stáhni a nainstaluj</h2>
+            <h2 class="section-title">Stáhni Graduately 1.3</h2>
             <p class="section-lead">
-              Stáhni instalátor pro své zařízení, rozbal zip a otevři ho — žádný
-              Terminál. Aplikace se pak udržuje aktuální sama a postup si můžeš
-              synchronizovat přes vlastní účet.
+              Stáhni instalátor pro své zařízení, rozbal ZIP a otevři ho — žádný
+              Terminál. Aplikace se pak udržuje aktuální sama a přes účet Apple
+              nebo Google si přeneseš postup na další zařízení.
             </p>
 
             <div class="platforms-grid">
@@ -936,7 +1326,7 @@
                 <span>
                   <span class="platform-name">macOS</span>
                   <span class="platform-note">
-                    Apple Silicon · Nainstalovat Graduately
+                    Apple Silicon (26+) · Nainstalovat Graduately
                   </span>
                 </span>
                 <span class="platform-arrow" aria-hidden="true">↓</span>
@@ -967,12 +1357,12 @@
               </a>
 
               <a
-                href="https://github.com/pepaskopec-blip/Graduately-releases/raw/builds/graduately-installer-android.zip"
+                href="https://github.com/pepaskopec-blip/Graduately-releases/raw/builds/graduately-android.apk"
                 class="platform-link"
               >
                 <span>
                   <span class="platform-name">Android</span>
-                  <span class="platform-note">8+ · průvodce stažením APK</span>
+                  <span class="platform-note">8+ · přímé stažení APK</span>
                 </span>
                 <span class="platform-arrow" aria-hidden="true">↓</span>
               </a>
@@ -992,9 +1382,9 @@
             </div>
 
             <p class="download-footnote">
-              Přímé stažení balíčků bez instalátoru najdeš na stránce
+              Všechny přímé balíčky i anglický/český návod najdeš v repozitáři
               <a
-                href="https://github.com/pepaskopec-blip/Graduately-releases/tree/builds"
+                href="https://github.com/pepaskopec-blip/Graduately-releases"
                 target="_blank"
                 rel="noopener noreferrer"
                 >Graduately Releases</a
@@ -1009,8 +1399,15 @@
         <div class="container footer-inner glass">
           <p class="footer-brand">Graduately</p>
           <p class="footer-meta">
-            Vzdělávací aplikace k přípravě na maturitu · © 2026 Graduately ·
-            <a href="privacy.html" style="color: inherit; text-decoration: underline">Ochrana soukromí</a>
+            Vzdělávací aplikace k přípravě na maturitu · Verze 1.3 · © 2026 Graduately ·
+            <a
+              href="https://github.com/pepaskopec-blip/Graduately-releases"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Releases</a
+            >
+            ·
+            <a href="privacy.html">Ochrana soukromí</a>
           </p>
         </div>
       </footer>
