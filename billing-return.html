@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="cs">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Zpět do aplikace — Graduately</title>
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="theme-color" content="#e07a5f" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
+    <link rel="icon" href="favicon.ico" sizes="any" />
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Sora:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --ink: #0f2a2e;
+        --ink-muted: #3d5a5f;
+        --glass-strong: rgba(255, 255, 255, 0.78);
+        --glass-border: rgba(255, 255, 255, 0.72);
+        --accent: #e07a5f;
+        --accent-deep: #c45d42;
+        --success: #1b8a5a;
+        --font-display: "Fraunces", Georgia, serif;
+        --font-body: "Sora", system-ui, -apple-system, sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+        color: var(--ink);
+        font-family: var(--font-body);
+        background: #c8e4e0;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      .ambient {
+        position: fixed;
+        inset: 0;
+        z-index: -1;
+        background:
+          radial-gradient(ellipse 80% 60% at 10% 20%, #9fd4cf 0%, transparent 55%),
+          radial-gradient(ellipse 70% 50% at 90% 10%, #f0c9a8 0%, transparent 50%),
+          radial-gradient(ellipse 60% 55% at 70% 80%, #7eb8b4 0%, transparent 55%),
+          linear-gradient(160deg, #b8ddd8 0%, #d4ebe7 40%, #e8dfd0 100%);
+      }
+
+      .card {
+        width: 100%;
+        max-width: 460px;
+        padding: 36px 30px 30px;
+        border-radius: 28px;
+        background: var(--glass-strong);
+        border: 1px solid var(--glass-border);
+        backdrop-filter: blur(22px);
+        -webkit-backdrop-filter: blur(22px);
+        box-shadow: 0 22px 54px rgba(15, 42, 46, 0.12);
+        text-align: center;
+      }
+
+      .icon-badge {
+        width: 64px;
+        height: 64px;
+        margin: 0 auto 18px;
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(224, 122, 95, 0.14);
+        color: var(--accent-deep);
+        font-size: 30px;
+        font-weight: 700;
+      }
+
+      .icon-badge.ok {
+        background: rgba(27, 138, 90, 0.14);
+        color: var(--success);
+      }
+
+      h1 {
+        margin: 0 0 10px;
+        font-family: var(--font-display);
+        font-size: 29px;
+        line-height: 1.18;
+        font-weight: 700;
+        font-style: italic;
+        color: var(--ink);
+      }
+
+      p.lead {
+        margin: 0 0 24px;
+        font-size: 15px;
+        line-height: 1.55;
+        color: var(--ink-muted);
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        width: 100%;
+        padding: 14px 20px;
+        border-radius: 14px;
+        background: var(--accent);
+        color: #fff;
+        font-size: 15px;
+        font-weight: 600;
+        text-decoration: none;
+        box-shadow: 0 8px 20px rgba(224, 122, 95, 0.28);
+        transition: transform 0.15s ease, background 0.15s ease;
+      }
+
+      .btn:hover {
+        background: var(--accent-deep);
+        transform: translateY(-1px);
+      }
+
+      p.hint {
+        margin: 16px 0 0;
+        font-size: 12.5px;
+        line-height: 1.5;
+        color: var(--ink-muted);
+      }
+
+      .home-link {
+        display: inline-block;
+        margin-top: 18px;
+        font-size: 12.5px;
+        color: var(--ink-muted);
+        text-decoration: none;
+      }
+
+      .home-link:hover {
+        color: var(--ink);
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="ambient" aria-hidden="true"></div>
+    <main class="card">
+      <div id="badge" class="icon-badge ok">✓</div>
+      <h1 id="title">Platba dokončena</h1>
+      <p id="lead" class="lead">Otevíráme aplikaci Graduately a odemykáme tvé Premium…</p>
+      <a id="openBtn" class="btn" href="graduately://checkout-success">Otevřít aplikaci Graduately</a>
+      <p id="hint" class="hint">
+        Pokud se aplikace neotevře sama (nebo používáš Windows / Linux), jednoduše se přepni zpět do okna Graduately a tuto záložku zavři.
+      </p>
+      <a id="homeLink" class="home-link" href="/">graduately.skopec.dev</a>
+    </main>
+
+    <script>
+      (function () {
+        var params = new URLSearchParams(window.location.search);
+        var status = params.get("status") || "success";
+        var rawLang = params.get("lang") || (navigator.language || "cs").slice(0, 2);
+        var en = rawLang === "en";
+        document.documentElement.lang = en ? "en" : "cs";
+
+        var deepLink = "graduately://checkout-success";
+        var copy;
+
+        if (status === "cancel") {
+          deepLink = "graduately://checkout-cancel";
+          copy = en
+            ? {
+                badge: "←",
+                ok: false,
+                title: "Checkout canceled",
+                lead: "No payment was made. Returning you to Graduately…",
+                btn: "Return to Graduately",
+                hint: "If the app doesn’t open automatically, just switch back to your Graduately window and close this tab.",
+              }
+            : {
+                badge: "←",
+                ok: false,
+                title: "Platba zrušena",
+                lead: "Nic nebylo strženo. Vracíme tě zpět do aplikace Graduately…",
+                btn: "Zpět do aplikace Graduately",
+                hint: "Pokud se aplikace neotevře sama (nebo používáš Windows / Linux), jednoduše se přepni zpět do okna Graduately a tuto záložku zavři.",
+              };
+        } else if (status === "portal") {
+          deepLink = "graduately://portal-return";
+          copy = en
+            ? {
+                badge: "✓",
+                ok: true,
+                title: "Subscription updated",
+                lead: "Returning you to Graduately and syncing your account…",
+                btn: "Open Graduately",
+                hint: "If the app doesn’t open automatically, just switch back to your Graduately window and close this tab.",
+              }
+            : {
+                badge: "✓",
+                ok: true,
+                title: "Nastavení předplatného uloženo",
+                lead: "Vracíme tě zpět do aplikace Graduately a aktualizujeme tvůj účet…",
+                btn: "Otevřít aplikaci Graduately",
+                hint: "Pokud se aplikace neotevře sama (nebo používáš Windows / Linux), jednoduše se přepni zpět do okna Graduately a tuto záložku zavři.",
+              };
+        } else {
+          deepLink = "graduately://checkout-success";
+          copy = en
+            ? {
+                badge: "✓",
+                ok: true,
+                title: "Payment complete",
+                lead: "Opening Graduately and unlocking Premium right now…",
+                btn: "Open Graduately",
+                hint: "If the app doesn’t open automatically (or on Windows / Linux), just switch back to your Graduately window and close this tab.",
+              }
+            : {
+                badge: "✓",
+                ok: true,
+                title: "Platba dokončena",
+                lead: "Otevíráme aplikaci Graduately a odemykáme tvé Premium…",
+                btn: "Otevřít aplikaci Graduately",
+                hint: "Pokud se aplikace neotevře sama (nebo používáš Windows / Linux), jednoduše se přepni zpět do okna Graduately a tuto záložku zavři.",
+              };
+        }
+
+        var badgeEl = document.getElementById("badge");
+        badgeEl.textContent = copy.badge;
+        badgeEl.className = "icon-badge" + (copy.ok ? " ok" : "");
+        document.getElementById("title").textContent = copy.title;
+        document.getElementById("lead").textContent = copy.lead;
+        document.getElementById("hint").textContent = copy.hint;
+        var btn = document.getElementById("openBtn");
+        btn.textContent = copy.btn;
+        btn.href = deepLink;
+        document.title = copy.title + " — Graduately";
+
+        setTimeout(function () {
+          window.location.href = deepLink;
+        }, 350);
+      })();
+    </script>
+  </body>
+</html>
